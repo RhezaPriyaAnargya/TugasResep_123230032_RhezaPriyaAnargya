@@ -4,15 +4,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../routes/app_routes.dart';
 
 class AuthController extends GetxController {
-  // 1. Pindahkan semua TextEditingController ke sini
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
-  // 2. State reaktif (menggunakan .obs) untuk menyembunyikan password
   var isPasswordHidden = true.obs;
 
-  // 3. Lifecycle GetX: Pengganti initState()
   @override
   void onInit() {
     super.onInit();
