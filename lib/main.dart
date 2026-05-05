@@ -24,8 +24,8 @@ class MainApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
         useMaterial3: true,
       ),
-      initialRoute: AppRoutes.login, // Halaman pertama yang dipanggil
-      getPages: AppPages.pages,      // Daftarkan semua rute
+      initialRoute: AppRoutes.login, 
+      getPages: AppPages.pages,     
     );
   }
 }

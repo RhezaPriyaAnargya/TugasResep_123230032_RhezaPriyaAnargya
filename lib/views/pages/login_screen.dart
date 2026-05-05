@@ -3,13 +3,11 @@ import 'package:get/get.dart';
 import '../../controllers/auth_controller.dart';
 import '../../routes/app_routes.dart';
 
-// BERUBAH MENJADI STATELESS WIDGET!
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Memanggil/Mendaftarkan AuthController ke dalam UI ini
     final AuthController authController = Get.put(AuthController());
 
     return Scaffold(
@@ -37,7 +35,6 @@ class LoginScreen extends StatelessWidget {
                 const Text('Username', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black87)),
                 const SizedBox(height: 8),
                 
-                // MENGGUNAKAN CONTROLLER DARI AUTH_CONTROLLER
                 TextField(
                   controller: authController.usernameController,
                   decoration: InputDecoration(
@@ -54,7 +51,6 @@ class LoginScreen extends StatelessWidget {
                 const Text('Password', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black87)),
                 const SizedBox(height: 8),
                 
-                // MENGGUNAKAN OBX AGAR UI REAKTIF SAAT MATA DITEKAN
                 Obx(() => TextField(
                   controller: authController.passwordController,
                   obscureText: authController.isPasswordHidden.value, 
@@ -76,7 +72,6 @@ class LoginScreen extends StatelessWidget {
                 )),
                 const SizedBox(height: 40),
                 
-                // TOMBOL LOGIN (Memanggil fungsi login dari controller)
                 SizedBox(
                   width: double.infinity,
                   height: 50,
@@ -94,7 +89,6 @@ class LoginScreen extends StatelessWidget {
 
                 Center(
                   child: GestureDetector(
-                    // NAVIGASI GETX YANG SANGAT PENDEK
                     onTap: () => Get.toNamed(AppRoutes.register),
                     child: RichText(
                       text: const TextSpan(

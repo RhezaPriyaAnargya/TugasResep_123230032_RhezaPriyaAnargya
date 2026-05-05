@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/auth_controller.dart';
 
-// BERUBAH MENJADI STATELESS WIDGET
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // MENGAMBIL CONTROLLER YANG SUDAH DIBUAT DI HALAMAN LOGIN
-    // Kita pakai Get.find() karena AuthController sudah di-put saat di LoginScreen
     final AuthController authController = Get.find<AuthController>();
 
     return Scaffold(
@@ -33,7 +30,6 @@ class RegisterScreen extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // MENGGUNAKAN CONTROLLER DARI AUTH_CONTROLLER
                     TextField(
                       controller: authController.usernameController,
                       decoration: const InputDecoration(
@@ -45,7 +41,6 @@ class RegisterScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     
-                    // FIELD PASSWORD DIBUNGKUS OBX AGAR MATA BISA DITEKAN
                     Obx(() => TextField(
                       controller: authController.passwordController,
                       obscureText: authController.isPasswordHidden.value,
@@ -65,7 +60,6 @@ class RegisterScreen extends StatelessWidget {
                     )),
                     const SizedBox(height: 16),
                     
-                    // FIELD KONFIRMASI PASSWORD (Pakai visibilitas yang sama dengan password atas)
                     Obx(() => TextField(
                       controller: authController.confirmPasswordController,
                       obscureText: authController.isPasswordHidden.value,
@@ -78,7 +72,6 @@ class RegisterScreen extends StatelessWidget {
                     )),
                     const SizedBox(height: 32),
                     
-                    // TOMBOL DAFTAR
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
@@ -90,7 +83,6 @@ class RegisterScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
-                        // MEMANGGIL FUNGSI REGISTER DARI CONTROLLER
                         onPressed: authController.register,
                         child: const Text('Daftar', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                       ),

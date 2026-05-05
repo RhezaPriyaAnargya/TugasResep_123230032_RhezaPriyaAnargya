@@ -1,11 +1,9 @@
-// HAPUS: import 'package:http/http.dart' as http;
-// HAPUS: import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/recipe_model.dart';
 import '../routes/app_routes.dart';
-import '../services/api_service.dart'; // IMPORT SERVICE KITA
+import '../services/api_service.dart'; 
 
 class HomeController extends GetxController {
   var selectedIndex = 0.obs; 
@@ -34,7 +32,6 @@ class HomeController extends GetxController {
   Future<void> fetchRecipes() async {
     isLoading.value = true;
     try {
-      // CONTROLLER JADI SANGAT BERSIH! Cukup panggil service.
       final data = await _apiService.fetchChickenRecipes();
       recipes.assignAll(data); 
     } catch (e) {

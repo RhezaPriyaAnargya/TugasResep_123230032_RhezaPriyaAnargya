@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/detail_controller.dart';
-import '../../models/recipe_model.dart'; // JANGAN LUPA IMPORT MODELNYA
+import '../../models/recipe_model.dart'; 
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({super.key, String? id}); // ID opsional karena kita pakai Get.arguments
+  const DetailScreen({super.key, String? id}); 
 
   @override
   Widget build(BuildContext context) {
-    // Daftarkan controller khusus untuk halaman ini
     final DetailController controller = Get.put(DetailController());
 
     return Scaffold(
@@ -30,19 +29,19 @@ class DetailScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildHeaderImage(recipe.thumb), // Panggil .thumb
+              _buildHeaderImage(recipe.thumb), 
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildTitleAndChips(recipe.name, recipe.category, recipe.area), // Panggil .name, .category, .area
+                    _buildTitleAndChips(recipe.name, recipe.category, recipe.area), 
                     const SizedBox(height: 24),
                     _buildFavoriteButton(controller),
                     const SizedBox(height: 32),
-                    _buildIngredientsList(recipe.ingredients), // Langsung ambil properti .ingredients
+                    _buildIngredientsList(recipe.ingredients), 
                     const SizedBox(height: 32),
-                    _buildInstructions(recipe.instructions ?? ''), // Panggil .instructions
+                    _buildInstructions(recipe.instructions ?? ''), 
                     const SizedBox(height: 40),
                   ],
                 ),
@@ -54,7 +53,6 @@ class DetailScreen extends StatelessWidget {
     );
   }
 
-  // Kita ubah parameter widget helper agar langsung menerima tipe data yang dibutuhkan
   Widget _buildHeaderImage(String imageUrl) {
     return Stack(
       children: [
@@ -77,7 +75,7 @@ class DetailScreen extends StatelessWidget {
               backgroundColor: Colors.black54,
               child: IconButton(
                 icon: const Icon(Icons.arrow_back, color: Colors.white),
-                onPressed: () => Get.back(), // Navigasi back ala GetX
+                onPressed: () => Get.back(), 
               ),
             ),
           ),

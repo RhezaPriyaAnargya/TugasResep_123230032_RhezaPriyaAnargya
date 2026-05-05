@@ -1,10 +1,8 @@
-// HAPUS: import 'package:http/http.dart' as http;
-// HAPUS: import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../models/recipe_model.dart';
-import '../services/api_service.dart'; // IMPORT SERVICE
+import '../services/api_service.dart';
 
 class DetailController extends GetxController {
   final String recipeId = Get.arguments;
@@ -30,7 +28,6 @@ class DetailController extends GetxController {
   Future<void> fetchRecipeDetail() async {
     isLoading.value = true;
     try {
-      // CUKUP PANGGIL SERVICE
       final data = await _apiService.fetchRecipeDetail(recipeId);
       recipeDetail.value = data;
     } catch (e) {

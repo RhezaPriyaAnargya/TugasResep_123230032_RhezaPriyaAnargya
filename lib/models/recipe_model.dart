@@ -19,7 +19,6 @@ class RecipeModel {
 
   // Factory untuk mengubah JSON dari API menjadi Objek RecipeModel
   factory RecipeModel.fromJson(Map<String, dynamic> json) {
-    // KITA PINDAHKAN LOGIKA LOOPING BAHAN KE SINI!
     List<String> parsedIngredients = [];
     for (int i = 1; i <= 20; i++) {
       final ingredient = json['strIngredient$i'];
@@ -36,7 +35,7 @@ class RecipeModel {
       category: json['strCategory'],
       area: json['strArea'],
       instructions: json['strInstructions'],
-      ingredients: parsedIngredients, // Masukkan hasil looping ke sini
+      ingredients: parsedIngredients, 
     );
   }
 

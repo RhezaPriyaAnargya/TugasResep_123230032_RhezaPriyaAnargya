@@ -10,7 +10,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Memanggil Controller (Karena kamu tidak pakai bindings, Get.put adalah cara yang paling tepat!)
     final HomeController homeController = Get.put(HomeController());
     
     final favoriteBox = Hive.box('favoriteBox');
@@ -80,7 +79,6 @@ class HomeScreen extends StatelessWidget {
               ),
               itemCount: controller.recipes.length,
               itemBuilder: (context, index) {
-                // Datanya sekarang jelas: RecipeModel
                 final RecipeModel recipe = controller.recipes[index];
                 return _buildRecipeCard(recipe);
               },
@@ -106,7 +104,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             Expanded(
               child: Image.network(
-                recipe.thumb, // <-- Menggunakan properti objek (.thumb)
+                recipe.thumb, 
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) => const Icon(Icons.broken_image, size: 50, color: Colors.grey),
               ),
@@ -114,7 +112,7 @@ class HomeScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                recipe.name, // <-- Menggunakan properti objek (.name)
+                recipe.name, 
                 style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                 maxLines: 2, 
                 overflow: TextOverflow.ellipsis, 
@@ -156,8 +154,6 @@ class HomeScreen extends StatelessWidget {
 
   // ==== WIDGET KARTU RESEP FAVORIT ====
   Widget _buildFavoriteCard(dynamic key, dynamic recipe, Box favoriteBox) {
-    // Karena kita tidak memakai Adapter Hive, kita baca datanya sebagai Map (JSON bawaan API)
-    // Atau jika sebelumnya tersimpan sebagai RecipeModel, kita handle juga agar tidak error
     final String id = recipe is Map ? recipe['idMeal'] ?? '' : recipe.id;
     final String thumb = recipe is Map ? recipe['strMealThumb'] ?? '' : recipe.thumb;
     final String name = recipe is Map ? recipe['strMeal'] ?? '' : recipe.name;
@@ -168,7 +164,7 @@ class HomeScreen extends StatelessWidget {
       elevation: 3,
       child: InkWell(
         onTap: () {
-          Get.toNamed(AppRoutes.detail, arguments: id); // Gunakan variabel id
+          Get.toNamed(AppRoutes.detail, arguments: id); 
         },
         child: Stack(
           children: [
@@ -177,7 +173,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: Image.network(
-                    thumb, // Gunakan variabel thumb
+                    thumb,
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) => const Icon(Icons.broken_image, size: 50, color: Colors.grey),
                   ),
@@ -185,7 +181,7 @@ class HomeScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    name, // Gunakan variabel name
+                    name, 
                     style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12), 
                     maxLines: 2, 
                     overflow: TextOverflow.ellipsis

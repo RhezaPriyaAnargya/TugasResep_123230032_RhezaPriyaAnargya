@@ -16,10 +16,9 @@ class AuthController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    checkLogin(); // Otomatis cek login saat aplikasi dibuka
+    checkLogin(); 
   }
 
-  // Pengganti dispose()
   @override
   void onClose() {
     usernameController.dispose();
@@ -38,7 +37,6 @@ class AuthController extends GetxController {
     final adaLogin = prefs.getBool('loginData') ?? false;
 
     if (adaLogin) {
-      // Get.offAllNamed menggantikan pushAndRemoveUntil (menghapus riwayat routing)
       Get.offAllNamed(AppRoutes.home);
     }
   }
@@ -56,7 +54,6 @@ class AuthController extends GetxController {
       
       Get.offAllNamed(AppRoutes.home);
     } else {
-      // Get.snackbar menggantikan ScaffoldMessenger! Jauh lebih ringkas.
       Get.snackbar(
         'Gagal', 
         'Username atau Password salah!',
@@ -99,12 +96,11 @@ class AuthController extends GetxController {
       colorText: Colors.white,
     );
     
-    // Bersihkan form input setelah sukses
     usernameController.clear();
     passwordController.clear();
     confirmPasswordController.clear();
     
-    Get.back(); // Kembali ke halaman Login (menggantikan Navigator.pop)
+    Get.back(); 
   }
 
   void logout() async {
