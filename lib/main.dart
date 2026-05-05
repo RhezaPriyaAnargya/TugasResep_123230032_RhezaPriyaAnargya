@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'screens/login_screen.dart'; 
+import 'package:get/get.dart'; 
+import 'routes/app_pages.dart';
+import 'routes/app_routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  // Inisialisasi database lokal Hive untuk Flutter
   await Hive.initFlutter();
   await Hive.openBox('favoriteBox');
-  
-  runApp(const MyApp());
+
+  runApp(const MainApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp( 
       title: 'ResepKu App',
-      debugShowCheckedModeBanner: false, 
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // Menyesuaikan tema warna dengan mockup aplikasi (dominan oranye)
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
         useMaterial3: true,
       ),
-      home: const LoginScreen(),
+      initialRoute: AppRoutes.login, // Halaman pertama yang dipanggil
+      getPages: AppPages.pages,      // Daftarkan semua rute
     );
   }
 }
